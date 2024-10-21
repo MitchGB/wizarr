@@ -13,6 +13,10 @@ class SettingsModel:
     server_api_key: Optional[str]
     discord_widget: Optional[str]
     custom_html: Optional[str]
+    smtp_address: Optional[str]
+    smtp_username: Optional[str]
+    smtp_password: Optional[str]
+    smtp_port: Optional[int]
 
     def __init__(self, **kwargs) -> None:
         for key, value in kwargs.items():
@@ -38,7 +42,11 @@ SettingsPostModel = Model('SettingsPostModel', {
     "request_api_key": fields.String(required=False, description="The API key of the request server"),
     "server_api_key": fields.String(required=False, description="The API key of the server"),
     "discord_widget": fields.String(required=False, description="Whether the Discord widget is enabled"),
-    "custom_html": fields.String(required=False, description="Custom HTML to be displayed on the homepage")
+    "custom_html": fields.String(required=False, description="Custom HTML to be displayed on the homepage"),  
+    "smtp_address": fields.String(required=False, description="SMTP Server Address"),
+    "smtp_port": fields.Integer(required=False, description="SMTP Server Port"),
+    "smtp_username": fields.String(required=False, description="SMTP Auth username"),
+    "smtp_password": fields.String(required=False, description="SMTP Auth password")
 })
 
 SettingsGetModel = Model('SettingsGetModel', {
@@ -52,5 +60,9 @@ SettingsGetModel = Model('SettingsGetModel', {
     "request_api_key": fields.String(required=False, description="The API key of the request server"),
     "server_api_key": fields.String(required=False, description="The API key of the server"),
     "discord_widget": fields.String(required=False, description="Whether the Discord widget is enabled"),
-    "custom_html": fields.String(required=False, description="Custom HTML to be displayed on the homepage")
+    "custom_html": fields.String(required=False, description="Custom HTML to be displayed on the homepage"),
+    "smtp_address": fields.String(required=False, description="SMTP Server Address"),
+    "smtp_port": fields.Integer(required=False, description="SMTP Server Port"),
+    "smtp_username": fields.String(required=False, description="SMTP Auth username"),
+    "smtp_password": fields.String(required=False, description="SMTP Auth password")
 })

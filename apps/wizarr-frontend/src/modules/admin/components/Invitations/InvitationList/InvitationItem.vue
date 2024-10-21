@@ -150,7 +150,8 @@ export default defineComponent({
             }
         },
         async openShareSheet() {
-            this.$share(this.shareData, this.openShareModal);
+            // this.$share(this.shareData, this.openShareModal);
+            this.openShareModal()
         },
         async openShareModal() {
             const modal_options = {

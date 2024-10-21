@@ -1490,7 +1490,7 @@ msgid "Welcome to"
 msgstr ""
 
 #: src/modules/setup/pages/Welcome.vue:6 src/tours/admin-home.ts:8
-msgid "Welcome to Wizarr"
+msgid "Welcome to Mubie"
 msgstr ""
 
 #: src/modules/settings/pages/Sentry.vue:5

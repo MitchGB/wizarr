@@ -126,6 +126,12 @@ export default defineComponent({
                             icon: "fas fa-link",
                             url: "/admin/settings/webhooks",
                         },
+                        {
+                            title: this.__("SMTP Server"),
+                            description: this.__("Add SMTP emailing service"),
+                            icon: "fas fa-envelope",
+                            url: "/admin/settings/smtp",
+                        },
                         //TODO: hiding unimplemented features
                         // {
                         //     title: this.__("Payments"),

@@ -32,6 +32,16 @@
                 }}
             </div>
         </div>
+
+
+        <div class="gap-5 items-center space-y-1 w-full text-center">
+            <FormKit type="form" id="emailForm" v-model="emailForm" @submit="" class="flex gap-5 space-y-4 md:space-y-6 w-full" :actions="false">
+                <FormKit type="inputButton" :classes="w-full" :label="__('Send Email')" :help="__('Email to send invitation to')" name="target_email" 
+                validation="required|email" autocomplete="off" placeholder="test@email.com" @button="sendInvite">
+                {{ __("Send") }}
+                </FormKit>
+            </FormKit>
+        </div>
     </div>
 </template>
 
@@ -41,6 +51,7 @@ import { useQRCode } from '@vueuse/integrations/useQRCode';
 import type { QRCodeToDataURLOptions } from 'qrcode';
 import colors from 'tailwindcss/colors';
 import { useClipboard } from '@vueuse/core/index.mjs';
+
 
 export default defineComponent({
     name: 'ShareSheet',
@@ -77,6 +88,24 @@ export default defineComponent({
         };
     },
     methods: {
+        async sendInvite() {
+            const email = this.emailForm.target_email;
+            if (!email) return this.$toast.error(this.__("Please enter an email address."));
+
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) return this.$toast.error(this.__("Please enter a valid email address."));
+
+            console.log(this.code)
+
+            await this.$axios.post("/api/smtp/send_invitation",
+                {
+                    code: this.code,
+                    recipient: email
+                })
+            
+
+        },
         downloadQRCode() {
             const link = document.createElement('a');
             link.download = `qrcode-${this.code}.png`;
